@@ -1,61 +1,157 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Countdown to March 21</title>
-    <style>
-        body {
-            background-color: #111;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 15%;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Tanvi ❤️</title>
 
-        h1 {
-            font-size: 40px;
-        }
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        #countdown {
-            font-size: 50px;
-            margin-top: 20px;
-            letter-spacing: 2px;
+    body {
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-family: 'Georgia', serif;
+        color: white;
+        background: linear-gradient(-45deg, #ff758c, #ff7eb3, #ffc3a0, #ffdde1);
+        background-size: 400% 400%;
+        animation: gradient 12s ease infinite;
+        padding: 20px;
+    }
+
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .container {
+        z-index: 2;
+        max-width: 500px;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: clamp(32px, 8vw, 48px);
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        font-size: clamp(16px, 4vw, 22px);
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    #countdown {
+        font-size: clamp(20px, 5vw, 32px);
+        line-height: 1.5;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .message {
+        font-size: clamp(18px, 4.5vw, 24px);
+        margin-top: 20px;
+    }
+
+    .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        animation: float linear forwards;
+        opacity: 0.8;
+        pointer-events: none;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(100vh) scale(0.5);
+            opacity: 0;
         }
-    </style>
+        20% { opacity: 0.8; }
+        100% {
+            transform: translateY(-10vh) scale(1.2);
+            opacity: 0;
+        }
+    }
+</style>
 </head>
+
 <body>
 
-    <h1>Countdown to March 21 💖</h1>
+<div class="container">
+    <h1>Tanvi ❤️</h1>
+    <div class="subtitle">Every second brings me closer to you.</div>
     <div id="countdown"></div>
+    <div class="message" id="finalMessage"></div>
+</div>
 
-    <script>
-        // Set the target date
-        const targetDate = new Date("March 21, 2026 00:00:00").getTime();
+<script>
+    // Adjust year if needed
+    const targetDate = new Date("March 21, 2026 00:00:00").getTime();
 
-        const countdown = setInterval(function() {
+    const countdown = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
 
-            const now = new Date().getTime();
-            const distance = targetDate - now;
+        if (distance < 0) {
+            clearInterval(countdown);
+            document.getElementById("countdown").innerHTML = "";
+            document.getElementById("finalMessage").innerHTML =
+                "It’s finally here, my love. ❤️";
+            return;
+        }
 
-            if (distance < 0) {
-                clearInterval(countdown);
-                document.getElementById("countdown").innerHTML = "It's finally here! ❤️";
-                return;
-            }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("countdown").innerHTML =
+            days + "d " +
+            hours + "h " +
+            minutes + "m " +
+            seconds + "s";
+    }, 1000);
 
-            document.getElementById("countdown").innerHTML =
-                days + "d " +
-                hours + "h " +
-                minutes + "m " +
-                seconds + "s ";
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
 
-        }, 1000);
-    </script>
+        const size = Math.random() * 20 + 15;
+        heart.style.width = size + "px";
+        heart.style.height = size + "px";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 4 + 6) + "s";
+
+        heart.innerHTML = `
+            <svg viewBox="0 0 24 24" width="100%" height="100%">
+                <path fill="white"
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+                2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.56
+                C11.09 5.01 12.76 4 14.5 4
+                17 4 19 6 19 8.5
+                c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        `;
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 10000);
+    }
+
+    setInterval(createHeart, 400);
+</script>
 
 </body>
 </html>
