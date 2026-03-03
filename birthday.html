@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Tanvi ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffdde1,#ffc3a0);
+    background-size:400% 400%;
+    animation:gradient 12s ease infinite;
+    font-family:'Georgia',serif;
+    overflow:hidden;
+}
+
+/* Gradient animation */
+@keyframes gradient{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* NAVBAR */
+.navbar{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    backdrop-filter:blur(10px);
+    background:rgba(255,255,255,0.15);
+    padding:8px 18px;
+    border-radius:30px;
+    display:flex;
+    gap:18px;
+    z-index:100;
+    box-shadow:0 4px 20px rgba(0,0,0,0.15);
+}
+
+.navbar a{
+    text-decoration:none;
+    color:white;
+    font-size:14px;
+    opacity:.8;
+    transition:.3s ease;
+}
+
+.navbar a:hover{
+    opacity:1;
+}
+
+.navbar a.active{
+    opacity:1;
+    font-weight:bold;
+    text-shadow:0 0 8px rgba(255,255,255,.8);
+}
+
+/* Glass card */
+.container{
+    max-width:480px;
+    width:90%;
+    padding:40px 28px;
+    border-radius:22px;
+    backdrop-filter:blur(14px);
+    background:rgba(255,255,255,.18);
+    box-shadow:0 8px 35px rgba(0,0,0,.25);
+    text-align:center;
+}
+
+/* Glow title */
+h1{
+    font-size:clamp(30px,7vw,46px);
+    color:white;
+    margin-bottom:20px;
+    text-shadow:
+        0 0 12px rgba(255,255,255,.9),
+        0 0 25px rgba(255,140,170,.6);
+}
+
+.quiz-question{
+    margin:15px 0;
+    color:white;
+    font-size:16px;
+}
+
+input{
+    padding:8px 12px;
+    border-radius:15px;
+    border:none;
+    margin-top:5px;
+    text-align:center;
+    width:80%;
+}
+
+button{
+    margin-top:20px;
+    background:white;
+    color:#ff5e8a;
+    border:none;
+    padding:10px 22px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+#secret{
+    margin-top:25px;
+    font-size:18px;
+    color:white;
+    opacity:0;
+    transition:opacity 1.5s ease;
+}
+
+.unlocked{
+    opacity:1 !important;
+    text-shadow:0 0 15px rgba(255,255,255,.8);
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR MUST BE DIRECTLY INSIDE BODY -->
+<nav class="navbar">
+    <a href="index.html">Countdown</a>
+    <a href="birthday.html" class="active">Birthday</a>
+</nav>
+
+<div class="container">
+    <h1>Happy Birthday Tanvi 🎂❤️</h1>
+
+    <div class="quiz-question">
+        1. What is my favorite thing about you?
+        <br><input id="q1" placeholder="Your answer">
+    </div>
+
+    <div class="quiz-question">
+        2. What date did I get obsessed with you? (date and month)
+        <br><input id="q2" placeholder="Your answer">
+    </div>
+
+    <div class="quiz-question">
+        3. I like you more. (True/False)
+        <br><input id="q3" placeholder="Your answer">
+    </div>
+
+    <button onclick="checkAnswers()">Unlock Surprise 💝</button>
+
+    <div id="secret">
+        You are the best thing that has happened to me.  
+        I can not believe how attached I have gotten to you,
+        in such a short amount of time. 
+        You have such beautiful eyes and are absoltely stunning
+        I hope you have an excellent Birthday. ❤️
+        P.S: You have some quizzes left 
+        until you get your gift
+    </div>
+</div>
+
+<script>
+function checkAnswers(){
+    const a1=document.getElementById("q1").value.toLowerCase();
+    const a2=document.getElementById("q2").value.toLowerCase();
+    const a3=document.getElementById("q3").value.toLowerCase();
+
+    if(a1.includes("eyes") && a2.includes("28 jan") && a3.includes("true")){
+        document.getElementById("secret").classList.add("unlocked");
+    } else {
+        alert("Almost... try again ❤️");
+    }
+}
+</script>
+
+</body>
+</html>
